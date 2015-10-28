@@ -1,7 +1,8 @@
 // ==UserScript==
 // @name          Mercury MW3030R WEB-UI English Translation
+// @namespace     https://github.com/gpapp/MW3030R-WebUI-translation/
 // @description   Author: Papp Gergely
-// @version       0.1
+// @version       0.2
 // @require       http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js
 // @include       http://192.168.1.1/*
 // @include       http://192.168.1.3/*
