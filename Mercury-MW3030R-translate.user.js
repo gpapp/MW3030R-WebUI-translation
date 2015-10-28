@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name          Mercury MW3030R WEB-UI English Translation
-// @description   Author: Zollner Robert
+// @description   Author: Gergely Papp
 // @version       0.1
 // @require       http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js
 // @include       http://192.168.1.1/*
