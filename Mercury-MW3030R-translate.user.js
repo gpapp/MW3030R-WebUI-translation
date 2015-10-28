@@ -12,14 +12,9 @@
 // Based on the work of Zollner Robert
 // Original available at https://raw.githubusercontent.com/Lupul/TPlink-WDR7500-UITranslate/master/TPlink-WDR7500-translate.user.js
 
-function replaceAll(find, replace, str) {
-    return str.replace(new RegExp(find, 'g'), replace);
-}
-
 var dict_ch2eng = {
     //Translation header
     "600M双频无线路由器":"600M Dual Band Wireless Router",
-    "水星":"Mercury",
     //Translation left menu
     //for a gap "bbb":"",  
     "运行状态":"Operating status",
@@ -87,9 +82,8 @@ var dict_ch2eng = {
     "修改登录口令":"Change Password",
     "系统日志":"System Log",
     "流量统计":"Traffic Statistics",
-    //"更多TP-LINK产品，请点击查看 >>":"More TP-LINK products Click to view"
-    "更多水星产品，\n请点击查看 >>":"Mercury products"
-
+    "更多水星产品,":"More Mercury products",
+    "请点击查看":"Click to view"
 };
 
 var dict_ch2eng_btn = {
@@ -124,6 +118,7 @@ var dict_ch2eng_btn = {
     "查找指定条目":"Find",
     "登 录":"Login",
     "退 出":"Logout",
+    "不启用":"Disable",
     "启用":"Enable",
     "弹出设备":"Safely Remove",
     "重新扫描":"Rescan",
@@ -135,7 +130,6 @@ var dict_ch2eng_btn = {
     "断 线":"Disconnect",
     "未连接":"Not connected",
     "高级设置":"Advanced Settings",
-    "返 回" : "Back",
     "重启路由器":"Reboot Router",
     //Setup Wizard
     //Next buttons not working
@@ -170,20 +164,12 @@ var dict_ch2eng_title = {
     "密码":"Password",
     "网络共享存取权限":"Network share access rights",
     "FTP访问权限":"FTP Access",
-    "修改":"Edit",
     "客户端名":"Client name",
-    "MAC 地址":"MAC address",
-    "IP 地址":"IP address",
-    "MAC地址":"MAC address",
-    "IP地址":"IP address",
     "有效时间":"Connection time",
-    "状 态":"Status",
-    "编 辑":"Edit",
     "无线网络安全设置（5GHz）":"Wireless network security settings (5GHz)",
-    "错误":"Error",
     "WAN口速率和双工模式设置":"WAN port speed and duplex mode settings",
     "bbb":"",
-}
+};
 
 var dict_ch2eng_description = {
     //Operating status
@@ -193,6 +179,9 @@ var dict_ch2eng_description = {
     "频段带宽：":"Band Bandwidth:",
     "SSID号：":"SSID number:",
     "WDS状态：":"WDS Status:",
+    "开启WDS":"Enable WDS",
+    "开启SSID广播":"Broadcast SSID",
+    "桥接的":"Bridged",   
     "未开启":"Not turned on",
     "WAN口连接类型：":"WAN port connection type:",
     "主机名：":"Host Name:",
@@ -221,15 +210,18 @@ var dict_ch2eng_description = {
     //Setup Wizard
     "本向导可设置上网所需的基本网络参数，请单击“下一步”继续。若要详细设置某项功能或参数，请点击左侧相关栏目。":"The wizard will help you to set up basic network parameters required for the Internet, click 'Next' to continue. To set a specific function or parameters in detail, please click on the left side of the relevant section.",
     "本向导提供三种最常见的上网方式供选择。若为其它上网方式，请点击左侧“网络参数”中“WAN口设置”进行设置。如果不清楚使用何种上网方式，请选择“让路由器自动选择上网方式”。":"This guide provides the three most common means of access available. If it is another means of access, please click on the left 'network parameters' in the 'WAN port settings' set. If you do not know what way to use the Internet, select 'Internet mode allows the router to automatically select.'",
-    //As with the others, if use this, when the check box is selected, dissapear
-    //"让路由器自动选择上网方式 (推荐)":"Let the router automatically select the means of access (recommended)",
-    //"PPPoE（ADSL虚拟拨号）":"PPPoE (ADSL virtual dial-up)",
-    //"动态IP（以太网宽带，自动从网络服务商获取IP地址）":"Dynamic IP (Ethernet broadband, automatically obtain IP address from the network service provider)",
-    //"静态IP（以太网宽带，网络服务商提供固定IP地址）":"Static IP (Ethernet broadband, Internet service providers offer fixed IP address)",
+    "让路由器自动选择上网方式 (推荐)":"Let the router automatically select the means of access (recommended)",
+    "PPPoE（ADSL虚拟拨号）":"PPPoE (ADSL virtual dial-up)",
+    "动态IP（以太网宽带，自动从网络服务商获取IP地址）":"Dynamic IP (Ethernet broadband, automatically obtain IP address from the network service provider)",
+    "静态IP（以太网宽带，网络服务商提供固定IP地址）":"Static IP (Ethernet broadband, Internet service providers offer fixed IP address)",
     "网线没有插好。":"Network cable is not plugged in.",
     "继续之前，请确保WAN口网线两端均连接正常，然后单击“重试”。":"Before proceeding, make sure that both ends of the WAN port network lines are connected properly, and then click the 'Retry' --> 重试.",
 
     //Network parameters
+    "MAC 地址":"MAC address",
+    "IP 地址":"IP address",
+    "MAC地址":"MAC address",
+    "IP地址":"IP address",
 
     //WAN port settings
     "IP地址：":"IP address:",
@@ -238,17 +230,13 @@ var dict_ch2eng_description = {
     "MAC 地址：":"MAC address:",
     "子网掩码：":"Subnet Mask:",
     "网关：":"Gateway:",
-    "数据包MTU(字节)：":"Packet MTU (bytes):",
-    "数据包MTU（字节）：":"Packet MTU (bytes):",
-    "DNS 服务器：":"DNS server:",
-    "DNS服务器：":"DNS server:",
+    '手动设置DNS服务器':"Manual DNS settings",
+    "数据包MTU\\(字节\\)":"MTU size (bytes)",
+    "默认是1500，如非必要，请勿修改":"The default is 1500, if not necessary, do not modify",
     "备用DNS服务器：":"Alternate DNS server:",
+    "DNS服务器：":"DNS server:",
     "WAN口未连接！":"Wan Port is not connected.",
-
-    //As with the others, if use this, when the check box is selected, dissapear
-    //"（默认是1500，如非必要，请勿修改）":"The default is 1500, if not necessary, do not modify)",
-    //"手动设置DNS服务器":"DNS server settings manually",
-    //"单播方式获取IP （一般情况下请勿选择）":"Unicast way to get IP (Do not choose general)",
+    "单播方式获取IP （一般情况下请勿选择）":"Use unicast to get IP (Do not choose under normal circumstances)",
 
     //Error Page
     "错误代码：5005":"Error Code: 5005",
@@ -269,11 +257,11 @@ var dict_ch2eng_description = {
     //Wireless band setting
     //As with the others, if use this, when the check box is selected, dissapear
     "本路由器支持双频无线，该页可设置无线工作的频段。":"The router supports dual-band wireless, you can set the page-band wireless work.",
-    "无线同时工作在2.4GHz和5GHz频段(802.11a/b/g/n)上":"Wireless at 2.4GHz and 5GHz band (802.11a / b / g / n)",
-    "无线只工作在2.4GHz频段(802.11b/g/n)上":"Wireless only works in the 2.4GHz band (802.11b/g/n) on",
-    "无线只工作在5GHz频段(802.11a/n)上":"Wireless only works in the 5GHz band (802.11a/n) on",
-    "关闭无线（包括2.4GHz和5GHz频段）。":"Close Wireless (including 2.4GHz and 5GHz bands).",
-    "您已经更改了无线设置，重启后生效。":"You have changed the wireless settings take effect after the restart.",
+    "无线同时工作在2.4GHz和5GHz频段\\(802.11a/b/g/n\\)上":"Wireless at 2.4GHz and 5GHz band (802.11a/b/g/n)",
+    "无线只工作在2.4GHz频段\\(802.11b/g/n\\)上":"Wireless only works in the 2.4GHz band (802.11b/g/n)",
+    "无线只工作在5GHz频段\\(802.11a/n\\)上":"Wireless only works in the 5GHz band (802.11a/n)",
+    "关闭无线（包括2.4GHz和5GHz频段）。":"Close Wireless (including 2.4GHz and 5GHz bands)",
+    "您已经更改了无线设置，重启后生效。":"You have changed the wireless settings take effect after the restart",
 
     //Message after change something, not working
     //"您已经更改了无线设置，重启后生效。":"You have changed the wireless settings, changes will take effect after the reboot.",		
@@ -320,10 +308,9 @@ var dict_ch2eng_description = {
     "RTS时槽：":"RTS slot:",
     "分片阈值：":"Fragmentation Threshold:",
     "DTIM阈值：":"DTIM Threshold:",
-    //if use next ones, the ones that are enabled will appears as disabled
-    //"开启 WMM":"Open WMM",
-    //"开启 Short GI":"Open Short GI",
-    //"开启 AP隔离":"Open AP Isolation",
+    "开启 WMM":"Open WMM",
+    "开启 Short GI":"Open Short GI",
+    "开启 AP隔离":"Open AP Isolation",
     //DHCP Server
     "缺省域名：":"Default Domain Name:",
     "主DNS服务器：":"Primary DNS Server:",
@@ -339,13 +326,10 @@ var dict_ch2eng_description = {
     "设备状态：":"Condition:",
 
     //Nat settings
-    //Not Working
-    //"注意： 只有当NAT启用时，硬件NAT的设置才能生效。":"Note: Only when NAT is enabled, hardware NAT settings to take effect.",
-    //"启用":"Enable",
-    //"停用":"Disable",
+    "注意： 只有当NAT启用时，硬件NAT的设置才能生效。":"Note: Only when NAT is enabled, hardware NAT settings to take effect.",
     "NAT状态：":"NAT Status:",
     "硬件NAT状态：":"Hardware NAT Status:",
-    //
+    
     "PPPoE连接:":"PPPoE connection:",
     "上网账号：":"Username:",
     "上网帐号：":"Username",
@@ -368,8 +352,8 @@ var dict_ch2eng_description = {
     "您可以在这保存您的设置。我们建议您在修改配置及升级软件前备份您的配置文件。":"You can save your settings in this . We recommend you to back up your configuration files before modifying the configuration and software upgrades.",
     "单击此按钮将使路由器重新启动。":"Clicking this button will cause the router to restart.",
     "注意：关闭路由器电源后，时间信息会丢失，当您下次开机连上Internet后，路由器将会自动获取GMT时间。您必须先连上Internet获取GMT时间或到此页设置时间后，其他功能（如上网控制）中的时间限定才能生效。":"Note : Turn off the router power, the time will be lost when you next boot connect the Internet, the router will automatically obtain the GMT time . You must first connect to the Internet and obtain GMT time or set the time to this page , the other functions (such as access control ) in the time limit to take effect.",
-    "优先使用NTP服务器1：":"NTP server priority 1:","bbb":"",
-    "优先使用NTP服务器2：":"NTP server priority 2:","bbb":"",
+    "优先使用NTP服务器1：":"NTP server priority 1:",
+    "优先使用NTP服务器2：":"NTP server priority 2:",
     "（仅在连上互联网后才能获取GMT时间）":"(Only after connecting to the Internet to get GMT time)",
     "获取网络时间错误，请检查是否正确连接到网络。":"Network time error, please check if the router is properly connected to the network.",
     //Error Page
@@ -392,23 +376,19 @@ var dict_ch2eng_description = {
     "文 件：":"File:",
     "当前软件版本：":"Current software version:",
     "当前硬件版本：":"Current hardware version:",
-    "WAN口未连接！":"",
     //Restore factory settings
     "单击此按钮将使路由器的所有设置恢复到出厂时的默认状态。":"Clicking this button will restore all settings of the router to the factory default state.",
     //System log
     "本页显示路由器的系统日志。用户可以分类、分级查看其中部分日志，并且可以保存日志内容或将日志内容通过邮件发送。":"This page shows the router's system log. Users can sorting, grading to view some of the log, and you can save the log contents or contents of the log by email.",
     "bbb":"",
-}
+};
 
 
 var dict_ch2eng_options = {
     "动态IP":"Dynamic IP",
     "静态IP":"Static IP",
     "其它掩码":"Other netmask",
-    "自动":"Automatic",
-    "十六进制":"Hex",
     "ASCII码":"ASCII code",
-    "禁用":"Disabled",
     "自动选择拨号模式":"Automatically select the dialing mode",
     "正常拨号模式":"Normal dialing mode",
     "特殊拨号模式1":"Special dial mode 1",
@@ -419,28 +399,89 @@ var dict_ch2eng_options = {
     "特殊拨号模式6":"Special dial mode 6",
     "特殊拨号模式7":"Special dial mode 7",
     "bbb":"",
-}
+};
 
 var dict_ch2eng_words = {
+    "状 态":"Status",
+    "编 辑":"Edit",
+    "错误":"Error",
+    "修改":"Edit",
+    "可选":"Optional",
     "自动":"Automatic",
+    "十六进制":"Hex",
+    "禁用":"Disabled",
+    "水星":"Mercury",    
     "口":"port",
     "成功":"Connected",
+    "扫描":"Scan",
     "接收":"Sent",
     "发送":"Received",
+    "位":"bit",
+    "高":"high",
+    "中":"medium",
+    "信 道":"Channel",
+    "低":"low",
+    "开启": "Open",
     "天":"day",
+    "例如":"E.g.",
     "bbb":"",
-}
+};
 
+// Try to translate complex expressions first, than replace simpler words
 var dict_ch2eng_all={};
-$.extend(dict_ch2eng_all, dict_ch2eng, dict_ch2eng_title, dict_ch2eng_options, dict_ch2eng_description, dict_ch2eng_btn, dict_ch2eng_words ); 
+$.extend(dict_ch2eng_all, dict_ch2eng_title, dict_ch2eng_description, dict_ch2eng_options, dict_ch2eng, dict_ch2eng_btn, dict_ch2eng_words ); 
+var regexps=[];
 
 $('document').ready(function(){
-    document.str = document.documentElement.innerHTML;
-    // Try to translate complex expressions first, than replace simpler words
-    $.each(dict_ch2eng_all, function(key, value) {
-        document.str = replaceAll(key, value, document.str);
-    });
-    //   	document.documentElement.innerHTML = "";
-    //	document.open('text/html');document.write(document.str);document.close();
-    document.documentElement.innerHTML = document.str;    
+    
+    translate();
 });
+
+function translate(){
+    $.each(dict_ch2eng_all, function(key, value) {
+        regexps.push({key:key, value:value, regexp:new RegExp(key,'g')});
+    });
+    
+    var txtWalker   = document.createTreeWalker (
+        document.body,
+        NodeFilter.SHOW_TEXT,
+        {   acceptNode: function (node) {
+            //-- Skip whitespace-only nodes
+            if (node.nodeValue.trim() )
+                return NodeFilter.FILTER_ACCEPT;
+
+            return NodeFilter.FILTER_SKIP;
+        }
+        },
+        false
+    );
+    var txtNode = null;
+    while (txtNode  = txtWalker.nextNode () ) {
+        txtNode.nodeValue = translateString(txtNode.nodeValue);
+    }
+
+    var inputWalker   = document.createTreeWalker (
+        document.body,
+        NodeFilter.SHOW_ELEMENT,
+        {   acceptNode: function (node) {
+            //-- Skip whitespace-only nodes
+            if ("INPUT"===node.tagName) 
+                return NodeFilter.FILTER_ACCEPT;
+
+            return NodeFilter.FILTER_SKIP;
+        }
+        },
+        false
+    );
+    var inputNode = null;
+    while (inputNode  = inputWalker.nextNode () ) {
+        inputNode.value = translateString(inputNode.value);
+    }
+}
+function translateString(str){
+    var newstr = str;
+    for (var i =0;i<regexps.length;i++){
+        newstr = newstr.replace(regexps[i].regexp,regexps[i].value);
+    }
+    return newstr;
+}
