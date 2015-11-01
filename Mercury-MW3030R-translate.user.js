@@ -79,7 +79,6 @@ var dict_ch2eng = {
     "软件升级":"Software Upgrade",
     "恢复出厂设置":"Restore factory settings",
     "备份和载入配置":"Backup Settings",
-    "重启路由器":"Reboot router",
     "修改登录口令":"Change Password",
     "系统日志":"System Log",
     "流量统计":"Traffic Statistics",
@@ -265,7 +264,10 @@ var dict_ch2eng_description = {
     "您已经更改了无线设置，重启后生效。":"You have changed the wireless settings take effect after the restart",
 
     //Message after change something, not working
-    //"您已经更改了无线设置，重启后生效。":"You have changed the wireless settings, changes will take effect after the reboot.",		
+    "重启路由器":"Reboot Router",
+    "您已经更改了无线设置，":"You have changed the wireless settings, changes will take effect after the ",		
+    "重启":"reboot.",		
+    "后生效。":"",		
     "本页面设置路由器无线网络的基本参数。":"This page is set basic parameters of the wireless network router.",
     "无线模式：":"Wireless Mode:",
     "信道：":"Channel:",
@@ -409,6 +411,7 @@ var dict_ch2eng_words = {
     "修改":"Edit",
     "可选":"Optional",
     "自动":"Automatic",
+    "关联":"Connecting",
     "十六进制":"Hex",
     "禁用":"Disabled",
     "水星":"Mercury",    
